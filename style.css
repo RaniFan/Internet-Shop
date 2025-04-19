@@ -1,4 +1,3 @@
-/* === style.css === */
 body {
     margin: 0;
     padding: 0;
@@ -46,10 +45,10 @@ body {
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    overflow: hidden;
 }
 
 .product-slider {
@@ -58,10 +57,11 @@ body {
     scroll-behavior: smooth;
     gap: 20px;
     padding: 10px;
+    scrollbar-width: none; /* Firefox */
 }
 
 .product-slider::-webkit-scrollbar {
-    display: none;
+    display: none; /* Chrome/Safari */
 }
 
 .product {
@@ -146,4 +146,28 @@ footer {
     display: flex;
     justify-content: flex-end;
     padding: 20px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+}
+  
+.modal-content {
+    background-color: #1a1a1a;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    color: #ffa500;
+}
+  
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
 }

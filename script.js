@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Появление элементов при скролле
     const fadeElements = document.querySelectorAll(".fade-in");
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -10,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fadeElements.forEach(el => observer.observe(el));
 
+    // Слайдер
     const slider = document.querySelector(".product-slider");
     const scrollStep = 320;
 
@@ -22,12 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-function scrollSlider(direction) {
-    const slider = document.querySelector('.product-slider');
-    const scrollAmount = 300;
-    slider.scrollBy({
-        left: direction * scrollAmount,
-        behavior: 'smooth'
-    });
+// Модалка
+function openModal() {
+    document.getElementById("modal").style.display = "block";
 }
 
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}

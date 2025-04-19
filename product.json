@@ -1,35 +1,38 @@
 [
-    "Бэтмен:год первый"{
-      "title": "Batman: Year One",
-      "author": "Frank Miller",
-      "publisher": "DC Comics",
-      "year": 1987,
-      "genre": ["Superhero", "Action", "Crime"],
-      "price": 2490
-    },
-    "Паучьи Миры"{
-      "title": "Spider-Man: Spider verse",
-      "author": "Phil Lord, Rodney Rothman",
-      "publisher": "Marvel Comics",
-      "year": 2018,
-      "genre": ["Superhero", "Multiverse", "Adventure"],
-      "price": 2690
-    },
-    "Наруто том 1"{
-      "title": "Naruto Vol.1",
-      "author": "Masashi Kishimoto",
-      "publisher": "Shueisha",
-      "year": 1999,
-      "genre": ["Shonen", "Adventure", "Martial Arts"],
-      "price": 1990
-    },
-    "Отряд X"{
-      "title": "Squad X",
-      "author": "Chris Claremont",
-      "publisher": "Marvel Comics",
-      "year": 1981,
-      "genre": ["Superhero", "Sci-Fi", "Time Travel"],
-      "price": 2890
-    }
-  ]
-  
+  {
+    "name": "Бэтмен: Год первый",
+    "title": "Batman: Year One",
+    "author": "Frank Miller",
+    "publisher": "DC Comics",
+    "year": 1987,
+    "genre": ["Superhero", "Action", "Crime"],
+    "price": 2490
+  },
+  {
+    "name": "Паучьи Миры",
+    "title": "Spider-Man: Spider-Verse",
+    "author": "Phil Lord, Rodney Rothman",
+    "publisher": "Marvel Comics",
+    "year": 2018,
+    "genre": ["Superhero", "Multiverse", "Adventure"],
+    "price": 2690
+  },
+  {
+    "name": "Наруто том 1",
+    "title": "Naruto Vol.1",
+    "author": "Masashi Kishimoto",
+    "publisher": "Shueisha",
+    "year": 1999,
+    "genre": ["Shonen", "Adventure", "Martial Arts"],
+    "price": 1990
+  },
+  {
+    "name": "Отряд X",
+    "title": "Squad X",
+    "author": "Chris Claremont",
+    "publisher": "Marvel Comics",
+    "year": 1981,
+    "genre": ["Superhero", "Sci-Fi", "Time Travel"],
+    "price": 2890
+  }
+]
