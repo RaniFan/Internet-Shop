@@ -1,35 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="Гиковский интернет магащин" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Мыло ручной работы от AromaSoap">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nerdy Nexus</title>
+
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+
+    <script defer src="./script.js"></script>
 </head>
 <body>
-    <h1 id="Name">Nerdy Nexus</h1>
-    <a href="#Home">Главная страница</a>
-    <a href="#About_us">Про нас</a>
-    <a href="#Shop">Покупки</a>
 
-    <!-- Описание Сайта -->
-    <section>
-    <p id="description">Nerdy Nexus — мы развиваем гик-тематику в Казахстане и создаём комьюнити для всех, кто шарит за комиксы, sci-fi, аниме, игры и вообще весь этот красивый цифровой бардак. 
-    Мы не просто фанатеем — мы объединяем креативных задротов, чтобы вместе творить, делиться мемами, запускать ивенты, 
-    косплеить по полной и прокачивать гик-культуру до нового уровня. </p>
-    </section>
-    <section id="products" сlass="fade-in">
-        <h2>Наши товары</h2>
-        <div class="slider">
-            <button id="prevBtn"></button>
-        
-            <div class="product">
-                <img id="productImage" src="images/product1.png" alt="Товар">
-            </div>
-        
-            <button id="nextBtn"></button>
+    <!-- Шапка -->
+    <header id="home">
+        <div class="logo-container fade-in">
+            <img src="Logo.png" alt="Логотип Nerdy Nexus" class="logo-img">
         </div>
-        
+        <h1 class="Name">Nerdy Nexus</h1>
+        <p class="subtitle"></p>
+        <nav class="nav-links">
+            <a href="#about">О компании</a>
+            <a href="#products">Продукция</a>
+            <a href="#benefits">Преимущества</a>
+            <a href="#reviews">Отзывы</a>
+            <a href="#contact">Контакты</a>
+        </nav>
+    </header>
+
+    <!-- Описание товара -->
+    <section id="about" class="fade-in">
+        <h3>в наши товары</h3>
+        <h2>О компании</h2>
+        <p>Nerdy Nexus — мы развиваем гик-тематику в Казахстане и создаём комьюнити для всех, кто шарит за комиксы, sci-fi, аниме, игры и вообще весь этот красивый цифровой бардак. 
+            Мы не просто фанатеем — мы объединяем креативных задротов, чтобы вместе творить, делиться мемами, запускать ивенты, 
+            косплеить по полной и прокачивать гик-культуру до нового уровня.</p>
     </section>
+
+    <!-- Продукция слайдер -->
+    <section id="products" class="fade-in">
+        <h2>Наша продукция</h2>
+        <div class="slider-container">
+            <button class="arrow left" onclick="scrollSlider(-1)">&#x25C0;</button>
+
+            <div class="product-slider">
+                <div class="product">
+                    <a href="product1.html" target="_blank">
+                        <img src="f1f7d7fa827b8b3710ca53809e7c8370.png" alt="Фигурки">
+                    </a>
+                    <p>Фигурки</p>
+                </div>
+                <div class="product">
+                    <a href="comics.html" target="_blank">
+                      <img src="903506e27a3b6b265b654cdc0c7ce494.png" alt="Комиксы">
+                    </a>
+                    <p>Комиксы</p>
+                  </div>                  
+                <div class="product">
+                    <a href="product3.html" target="_blank">
+                        <img src="Untitled (1).png" alt="Одежда">
+                    </a>
+                    <p>Одежда</p>
+                </div>
+            </div>
+
+            <button class="arrow right" onclick="scrollSlider(1)">&#x25B6;</button>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section id="reviews" class="fade-in">
+        <h2>Отзывы клиентов</h2>
+        <div class="review">
+            <p>"Очень дешевые цены, и качество товаров на высшем уровне"</p>
+            <span>— Сергей Брин</span>
+        </div>
+        <div class="review">
+            <p>"Заведение отличное и без лишних понтов"</p>
+            <span>— Дима Сыендук</span>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact" class="fade-in">
+        <h2>Контакты</h2>
+        <p>📍 Улица Пупкина 34</p>
+        <p>📞 +7 727 246 46 47</p>
+        <p>📩 Voenkomat321@gmail.com</p>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <p>&copy; 2025 AromaSoap. Все права защищены.</p>
+    </footer>
+
 </body>
-</html> 
+</html>
