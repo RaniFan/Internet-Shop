@@ -9,51 +9,150 @@
       color: #ffa500;
       font-family: 'Arial', sans-serif;
       padding: 30px;
-      text-align: center;
+      margin: 0;
+      overflow-x: hidden;
     }
+
     h1 {
       margin-bottom: 30px;
+      text-align: center;
     }
+
     .product-list {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
     }
+
     .item {
       background-color: #1a1a1a;
       padding: 20px;
       border-radius: 10px;
       width: 200px;
       box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
+      cursor: pointer;
+      transition: transform 0.2s ease;
     }
+
+    .item:hover {
+      transform: scale(1.05);
+    }
+
     .item img {
       width: 100%;
       border-radius: 8px;
       margin-bottom: 10px;
     }
+
+    /* Панель сбоку */
+    .side-panel {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 350px;
+      height: 100%;
+      background-color: #1a1a1a;
+      color: #ffa500;
+      box-shadow: -2px 0 10px rgba(255, 165, 0, 0.3);
+      padding: 20px;
+      overflow-y: auto;
+      transition: right 0.4s ease-in-out;
+      z-index: 1000;
+    }
+
+    .side-panel.open {
+      right: 0;
+    }
+
+    .side-panel img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: #ffa500;
+      font-size: 24px;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: #ffcc70;
+    }
   </style>
 </head>
 <body>
   <h1>Категория: Комиксы</h1>
+
   <div class="product-list">
-    <div class="item">
+    <div class="item" onclick="showPanel('30aaa61d7840a79238a0c2b1828a9a87.jpg', `
+      <h2>Batman: Year One</h2>
+      <p><strong>Автор:</strong> Frank Miller</p>
+      <p><strong>Издательство:</strong> DC Comics</p>
+      <p><strong>Жанр:</strong> Супергероика, Драма, Нуар</p>
+      <p><strong>Цена:</strong> 2500 ₸</p>
+    `)">
       <img src="30aaa61d7840a79238a0c2b1828a9a87.jpg" alt="Batman">
       <p>Batman: Year One</p>
     </div>
-    <div class="item">
+
+    <div class="item" onclick="showPanel('1608215007_spider-verse_003.png', `
+      <h2>Spider-Man: Spider-Verse</h2>
+      <p><strong>Автор:</strong> Dan Slott</p>
+      <p><strong>Издательство:</strong> Marvel</p>
+      <p><strong>Жанр:</strong> Супергероика, Приключения</p>
+      <p><strong>Цена:</strong> 2200 ₸</p>
+    `)">
       <img src="1608215007_spider-verse_003.png" alt="Spider-Man">
-      <p>Spider-Man: Spider-Verse
-      </p>
+      <p>Spider-Man: Spider-Verse</p>
     </div>
-    <div class="item">
+
+    <div class="item" onclick="showPanel('7214089388.png', `
+      <h2>Naruto Vol.1</h2>
+      <p><strong>Автор:</strong> Masashi Kishimoto</p>
+      <p><strong>Издательство:</strong> Shueisha</p>
+      <p><strong>Жанр:</strong> Манга, Экшен</p>
+      <p><strong>Цена:</strong> 1800 ₸</p>
+    `)">
       <img src="7214089388.png" alt="Naruto">
       <p>Naruto Vol.1</p>
     </div>
-    <div class="item">
+
+    <div class="item" onclick="showPanel('cover.png', `
+      <h2>Squad X</h2>
+      <p><strong>Автор:</strong> Неизвестен</p>
+      <p><strong>Издательство:</strong> Marvel</p>
+      <p><strong>Жанр:</strong> Фантастика, Экшен</p>
+      <p><strong>Цена:</strong> 2300 ₸</p>
+    `)">
       <img src="cover.png" alt="X-Men">
-      <p>Squad X </p>
+      <p>Squad X</p>
     </div>
   </div>
+
+  <!-- Панель сбоку -->
+  <div class="side-panel" id="sidePanel">
+    <button class="close-btn" onclick="closePanel()">×</button>
+    <img id="panelImg" src="" alt="Превью">
+    <div id="panelContent"></div>
+  </div>
+
+  <script>
+    function showPanel(imgSrc, description) {
+      document.getElementById("panelImg").src = imgSrc;
+      document.getElementById("panelContent").innerHTML = description;
+      document.getElementById("sidePanel").classList.add("open");
+    }
+
+    function closePanel() {
+      document.getElementById("sidePanel").classList.remove("open");
+    }
+  </script>
 </body>
 </html>
