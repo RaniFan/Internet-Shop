@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Категория: Одежда
+  <a href="index.html" class="home-button">← Главная страница</a>
+  </title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #ffa500;
+      font-family: 'Arial', sans-serif;
+      padding: 30px;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .item {
+      background-color: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      width: 200px;
+      box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .item:hover {
+      transform: scale(1.05);
+    }
+
+    .item img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    /* Панель сбоку */
+    .side-panel {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 350px;
+      height: 100%;
+      background-color: #1a1a1a;
+      color: #ffa500;
+      box-shadow: -2px 0 10px rgba(255, 165, 0, 0.3);
+      padding: 20px;
+      overflow-y: auto;
+      transition: right 0.4s ease-in-out;
+      z-index: 1000;
+    }
+
+    .side-panel.open {
+      right: 0;
+    }
+
+    .side-panel img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: #ffa500;
+      font-size: 24px;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: #ffcc70;
+    }
+  </style>
+</head>
+<body>
+  <h1>Категория: Одежда</h1>
+
+  <div class="product-list">
+    
+
+  <!-- Панель сбоку -->
+  <div class="side-panel" id="sidePanel">
+    <button class="close-btn" onclick="closePanel()">×</button>
+    <img id="panelImg" src="" alt="Превью">
+    <div id="panelContent"></div>
+  </div>
+
+  <script>
+    function showPanel(imgSrc, description) {
+      document.getElementById("panelImg").src = imgSrc;
+      document.getElementById("panelContent").innerHTML = description;
+      document.getElementById("sidePanel").classList.add("open");
+    }
+
+    function closePanel() {
+      document.getElementById("sidePanel").classList.remove("open");
+    }
+  </script>
+</body>
+</html>

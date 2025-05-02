@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Корзина</title>
+  <style>
+    body {
+      background-color: #000;
+      color: white;
+      font-family: 'Bangers', cursive;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .cart-container {
+      max-width: 800px;
+      margin: 0 auto;
+      border: 3px solid white;
+      padding: 20px;
+      box-shadow: 5px 5px 0 white;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px dashed white;
+      padding-bottom: 10px;
+    }
+
+    .cart-item img {
+      width: 80px;
+      height: 120px;
+      object-fit: cover;
+      border: 2px solid white;
+      margin-right: 20px;
+    }
+
+    .cart-item-info {
+      flex-grow: 1;
+    }
+
+    .remove-btn {
+      background: black;
+      color: white;
+      border: 2px solid white;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-family: 'Bangers', cursive;
+    }
+
+    .remove-btn:hover {
+      background: white;
+      color: black;
+    }
+
+    .total {
+      text-align: right;
+      font-size: 24px;
+      margin-top: 20px;
+    }
+
+    .empty-cart {
+      text-align: center;
+      font-size: 24px;
+      padding: 50px;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="home-button">← Главная страница</a>
+
+  <div class="cart-container">
+    <h1>ВАША КОРЗИНА</h1>
+    <div id="cart-items"></div>
+    <div class="total" id="cart-total">Итого: 0 ₸</div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartItemsContainer = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<div class="empty-cart">Корзина пуста</div>';
+        return;
+      }
+
+      let total = 0;
+      cart.forEach((item, index) => {
+        // Парсим цену из описания (пример: "Цена: 2500 ₸")
+        const priceMatch = item.description.match(/Цена:\s*(\d+)/);
+        const price = priceMatch ? parseInt(priceMatch[1]) : 0;
+        total += price;
+
+        cartItemsContainer.innerHTML += `
+          <div class="cart-item">
+            <img src="${item.imgSrc}" alt="Обложка комикса">
+            <div class="cart-item-info">
+              ${item.description}
+            </div>
+            <button class="remove-btn" onclick="removeItem(${index})">✕</button>
+          </div>
+        `;
+      });
+
+      cartTotal.textContent = `Итого: ${total} ₸`;
+    });
+
+    function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      location.reload(); // Обновляем страницу
+    }
+  </script>
+</body>
+</html>

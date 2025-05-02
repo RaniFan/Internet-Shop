@@ -31,3 +31,24 @@ function scrollSlider(direction) {
     });
 }
 
+let currentItem = null;
+
+function showPanel(imgSrc, description) {
+  currentItem = { imgSrc, description };
+  // ... ваш существующий код ...
+}
+function updateCartCounter() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    document.getElementById('cart-counter').textContent = cart.length;
+  }
+
+document.addEventListener('DOMContentLoaded', updateCartCounter);
+
+function addToCart() {
+  if (!currentItem) return;
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart.push(currentItem);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  alert('Товар добавлен в корзину!');
+}
+
