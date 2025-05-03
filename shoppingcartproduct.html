@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Корзина</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      color: white;
+      font-family: 'Bangers', cursive;
+      margin: 0;
+      padding: 20px;
+      position: relative;
+    }
+    
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(white 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity: 0.1;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .home-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: #000;
+      color: white;
+      border: 2px solid white;
+      padding: 10px 15px;
+      font-family: 'Bangers', cursive;
+      text-decoration: none;
+      z-index: 1001;
+      transition: all 0.3s;
+    }
+    
+    .home-button:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .cart-container {
+      max-width: 800px;
+      margin: 30px auto;
+      border: 3px solid white;
+      padding: 20px;
+      box-shadow: 5px 5px 0 white;
+      background-color: #000;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      text-shadow: 3px 3px 0 rgb(0, 0, 0);
+      margin-bottom: 30px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 2px dashed white;
+      padding-bottom: 15px;
+      position: relative;
+    }
+
+    .cart-item img {
+      width: 100px;
+      height: 150px;
+      object-fit: cover;
+      border: 2px solid white;
+      margin-right: 20px;
+    }
+
+    .cart-item-info {
+      flex-grow: 1;
+    }
+
+    .cart-item-size {
+      display: inline-block;
+      background: white;
+      color: black;
+      padding: 3px 10px;
+      border-radius: 15px;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    .remove-btn {
+      background: black;
+      color: white;
+      border: 2px solid white;
+      padding: 8px 15px;
+      cursor: pointer;
+      font-family: 'Bangers', cursive;
+      position: absolute;
+      right: 10px;
+      bottom: 15px;
+      transition: all 0.3s;
+    }
+
+    .remove-btn:hover {
+      background: white;
+      color: black;
+      transform: scale(1.1);
+    }
+
+    .total {
+      text-align: right;
+      font-size: 28px;
+      margin-top: 30px;
+      padding-top: 15px;
+      border-top: 2px solid white;
+    }
+
+    .empty-cart {
+      text-align: center;
+      font-size: 24px;
+      padding: 50px;
+    }
+    
+    .checkout-btn {
+      display: block;
+      width: 100%;
+      background: white;
+      color: black;
+      border: none;
+      padding: 15px;
+      font-family: 'Bangers', cursive;
+      font-size: 20px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .checkout-btn:hover {
+      background: black;
+      color: white;
+      border: 2px solid white;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="home-button">← Главная страница</a>
+
+  <div class="cart-container">
+    <h1>ВАША КОРЗИНА</h1>
+    <div id="cart-items"></div>
+    <div class="total" id="cart-total">Итого: 0 ₸</div>
+    <button class="checkout-btn">ОФОРМИТЬ ЗАКАЗ</button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartItemsContainer = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<div class="empty-cart">Корзина пуста</div>';
+        return;
+      }
+
+      let total = 0;
+      cart.forEach((item, index) => {
+        const priceMatch = item.description.match(/Цена:\s*(\d+)/);
+        const price = priceMatch ? parseInt(priceMatch[1]) : 0;
+        total += price;
+
+        cartItemsContainer.innerHTML += `
+          <div class="cart-item">
+            <img src="${item.imgSrc}" alt="Товар">
+            <div class="cart-item-info">
+              ${item.description}
+              ${item.size ? `<span class="cart-item-size">Размер: ${item.size}</span>` : ''}
+            </div>
+            <button class="remove-btn" onclick="removeItem(${index})">✕ Удалить</button>
+          </div>
+        `;
+      });
+
+      cartTotal.textContent = `Итого: ${total} ₸`;
+    });
+
+    function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      location.reload();
+    }
+    
+    document.querySelector('.checkout-btn').addEventListener('click', () => {
+      alert('Заказ оформлен! Спасибо за покупку!');
+      localStorage.removeItem('cart');
+      location.reload();
+    });
+  </script>
+</body>
+</html>
